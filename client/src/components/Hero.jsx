@@ -11,7 +11,7 @@ export default function Hero() {
         className="text-5xl md:text-6xl font-bold text-white mb-4"
         data-aos="fade-down"
       >
-        Firaol Bekuma
+        {import.meta.env.VITE_APP_NAME}
       </h1>
 
       {/* Subtitle */}
