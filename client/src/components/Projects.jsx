@@ -14,7 +14,9 @@ export default function Projects() {
             key={project.id}
             title={project.title}
             description={project.description}
+            tech={project.tech}
             link={project.link}
+            type={project.type}
             delay={project.delay}
           />
         ))}
