@@ -1,33 +1,101 @@
-// src/components/About.jsx
-import React from "react";
+import AboutPanel from "./AboutPanel"
+
+import profile from "../assets/about/profile.png"
+import education from "../assets/about/education.jpg"
+import certifications from "../assets/about/certifications.png"
+import skills from "../assets/about/skills.jpg"
+import projects from "../assets/about/projects.jpg"
+import languages from "../assets/about/languages.jpg"
+import internship from "../assets/about/internship.jpg"
+import contact from "../assets/about/contact.jpg"
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="bg-gray-50 py-16 px-4"
-      data-aos="fade-up"
-    >
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4 text-gray-800">About Me</h2>
-        <p className="text-gray-600 mb-6">
-          Hello! I’m <span className="font-semibold">Firaol Bekuma</span>, an Electronics & Embedded Systems Engineer
-          with a passion for creating IoT projects and web applications. I specialize in
-          ESP32 microcontroller projects, smart devices, and building modern, responsive
-          websites using <span className="font-semibold">React</span> and <span className="font-semibold">Tailwind CSS</span>.
-        </p>
+    <section id="about" className="bg-white py-24 px-6">
+      <div className="max-w-6xl mx-auto">
 
-        <p className="text-gray-600 mb-6">
-          I enjoy solving real-world problems with technology and continuously learning
-          new skills. My portfolio showcases a mix of live web projects and academic
-          embedded systems projects demonstrating both software and hardware expertise.
-        </p>
+        <AboutPanel title="About Me" image={profile}>
+          <p>
+            I am <strong>Firaol Bekuma</strong>, an Electronics & Communication Engineer
+            with a strong passion for IoT, embedded systems, and modern web technologies.
+          </p>
+          <p>
+            I enjoy building real-world solutions that connect hardware and software
+            to solve practical problems.
+          </p>
+        </AboutPanel>
 
-        <p className="text-gray-600">
-          Feel free to explore my projects below or reach out via <span className="font-semibold">LinkedIn</span> or
-          <span className="font-semibold"> GitHub</span> for collaborations and inquiries.
-        </p>
+        <AboutPanel title="Education" image={education} reverse>
+          <p>
+            <strong>BSc in Electronics & Communication Engineering</strong>
+          </p>
+          <p>
+            Addis Ababa / Ambo University
+          </p>
+          <p>
+            Additional studies in <strong>Business & Management (BUMA)</strong>
+          </p>
+        </AboutPanel>
+
+        <AboutPanel title="Certifications & Training" image={certifications}>
+          <ul className="list-disc pl-6">
+            <li>Data Analysis Fundamentals</li>
+            <li>Fundamentals of Programming</li>
+            <li>Cisco Networking</li>
+            <li>IoT & Embedded Systems</li>
+          </ul>
+        </AboutPanel>
+
+        <AboutPanel title="Skills" image={skills} reverse>
+          <ul className="list-disc pl-6">
+            <li>HTML, CSS, JavaScript, React</li>
+            <li>ESP32, Arduino, Embedded C</li>
+            <li>Networking & System Support</li>
+            <li>Git, Linux, Cloud Basics</li>
+          </ul>
+        </AboutPanel>
+
+        <AboutPanel
+          title="Projects"
+          image={projects}
+          buttonText="View Projects"
+          buttonLink="#projects"
+        >
+          <p>
+            I have worked on academic and personal projects involving IoT systems,
+            smart automation, and responsive web applications.
+          </p>
+        </AboutPanel>
+
+        <AboutPanel title="Languages" image={languages} reverse>
+          <ul className="list-disc pl-6">
+            <li>Afaan Oromo — Native</li>
+            <li>English — Professional</li>
+            <li>Amharic — Fluent</li>
+          </ul>
+        </AboutPanel>
+
+        <AboutPanel title="Internship & Experience" image={internship}>
+          <ul className="list-disc pl-6">
+            <li>ICT Directorate — Ambo University</li>
+            <li>EthioTelecom</li>
+          </ul>
+        </AboutPanel>
+
+        <AboutPanel
+          title="Let’s Connect"
+          image={contact}
+          reverse
+          buttonText="Email Me"
+          buttonLink="#contact"
+        >
+          <p>
+            Interested in collaboration, opportunities, or just a conversation?
+            Feel free to reach out.
+          </p>
+        </AboutPanel>
+
       </div>
     </section>
-  );
+  )
 }
