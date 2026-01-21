@@ -1,53 +1,79 @@
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-export default function AboutPanel({
-  title,
-  children,
-  image,
-  reverse = false,
-  buttonText,
-  buttonLink,
-}) {
+export default function AboutPanel({ title, text, images, reverse, isContact }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 3500);
+
+    return () => clearInterval(timer);
+  }, [images.length]);
+
   return (
-    <motion.div
-      className={`flex flex-col md:flex-row items-center gap-10 mb-20 ${
-        reverse ? "md:flex-row-reverse" : ""
-      }`}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-    >
-      {/* Image */}
-      <motion.img
-        src={image}
-        alt={title}
-        className="w-full md:w-1/2 rounded-xl shadow-lg"
-        initial={{ opacity: 0, x: reverse ? 40 : -40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-      />
-
-      {/* Text */}
-      <motion.div
-        className="md:w-1/2 text-gray-700"
-        initial={{ opacity: 0, x: reverse ? -40 : 40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
+    <div className="max-w-6xl mx-auto mb-24">
+      <div
+        className={`flex flex-col md:flex-row items-center gap-10 ${
+          reverse ? "md:flex-row-reverse" : ""
+        }`}
       >
-        <h3 className="text-3xl font-bold text-blue-700 mb-4">{title}</h3>
-        <div className="space-y-3 text-lg">{children}</div>
+        {/* Image Slider */}
+        <motion.div
+          className="relative w-full md:w-1/2 h-72 overflow-hidden rounded-xl shadow-lg"
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          {images.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={title}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+                index === current
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-105"
+              }`}
+            />
+          ))}
+        </motion.div>
 
-        {buttonText && (
-          <a
-            href={buttonLink}
-            className="inline-block mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg
-                       hover:bg-blue-500 transition"
-          >
-            {buttonText}
-          </a>
-        )}
-      </motion.div>
-    </motion.div>
-  )
+        {/* Text Content */}
+        <motion.div
+          className="w-full md:w-1/2"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            {title}
+          </h2>
+
+          <p className="text-gray-600 leading-relaxed mb-6">
+            {text}
+          </p>
+
+          {/* EMAIL BUTTON — ONLY FOR CONTACT PANEL */}
+          {isContact && (
+             <button
+               onClick={() => {
+                 document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" });
+               }}
+               className="inline-block px-8 py-3 bg-blue-600 text-white rounded-full font-semibold
+                          hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-md"
+             >
+                Email Me
+             </button>
+
+          )}
+        </motion.div>
+      </div>
+    </div>
+  );
 }

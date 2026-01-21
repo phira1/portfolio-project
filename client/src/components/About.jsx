@@ -1,101 +1,109 @@
-import AboutPanel from "./AboutPanel"
-
-import profile from "../assets/about/profile.png"
-import education from "../assets/about/education.jpg"
-import certifications from "../assets/about/certifications.png"
-import skills from "../assets/about/skills.jpg"
-import projects from "../assets/about/projects.jpg"
-import languages from "../assets/about/languages.jpg"
-import internship from "../assets/about/internship.jpg"
-import contact from "../assets/about/contact.jpg"
+import AboutPanel from "./AboutPanel";
 
 export default function About() {
+  const panels = [
+    {
+      title: "Professional Bio",
+      text: "I am Electronics & Communication Engineer with additional studies in BUMA, passionate about IoT, Web and Embedded Systems. I enjoy building projects that bridge hardware and software.",
+      images: [
+        "/assets/about/bio-1.png",
+        "/assets/about/bio-2.jpg",
+        "/assets/about/bio-3.png",
+      ],
+      reverse: false,
+    },
+    {
+      title: "Education",
+      text: "Completed my Electronics & Communication degree at Adama Science and Technology University (ASTU). Strong foundation in electronics and communication systems, skilled in Programming and building software projects",
+      images: [
+        "/assets/about/education-1.jpg",
+        "/assets/about/education-2.jpg",
+        "/assets/about/education-3.jpg",
+      ],
+      reverse: true,
+    },
+    {
+      title: "Certifications & Training",
+      text: "Completed Data Analysis Fundamentals, Fundamentals of Programming, CISCO Networking, IoT and Embedded Systems certifications and also other academic completion certificates.",
+      images: [
+        "/assets/about/certificate-1.png",
+        "/assets/about/certificate-2.jpg",
+        "/assets/about/certificate-3.jpg",
+      ],
+      reverse: false,
+    },
+    {
+      title: "Languages",
+      text: "Fluent in three languages: English, Afaan Oromoo and Amharic.",
+      images: [
+        "/assets/about/languages-1.jpg",
+        "/assets/about/languages-2.jpg",
+        "/assets/about/languages-3.jpg",
+      ],
+      reverse: true,
+    },
+    {
+      title: "Skills",
+      text: "Web Development, IoT, Embedded Systems, Programming, Networking, Electronics, Video editing , Graphics Designer",
+      images: [
+        "/assets/about/skills-1.jpg",
+        "/assets/about/skills-2.jpg",
+        "/assets/about/skills-3.jpg",
+      ],
+      reverse: false,
+    },
+    {
+      title: "Projects",
+      text: "Various academic and personal projects combining electronics, web apps and embedded solutions and additional big projects are on the way !",
+      images: [
+        "/assets/about/projects-1.jpg",
+        "/assets/about/projects-2.jpg",
+        "/assets/about/projects-3.jpg",
+      ],
+      reverse: true,
+    },
+    {
+      title: "Internship & Experience",
+      text: "Interned at Ambo University (AU) ICT Directorate and worked at Ethiotelecom, gaining real-world experience in ICT operations and networking and telecom infrastructures.",
+      images: [
+        "/assets/about/experience-1.jpg",
+        "/assets/about/experience-2.jpg",
+        "/assets/about/experience-3.jpg",
+      ],
+      reverse: false,
+    },
+    {
+      title: "Contact Me",
+      text: "Feel free to reach out! Click the button below to send a message directly via email.",
+      images: [
+        "/assets/about/contact-1.jpg",
+        "/assets/about/contact-2.jpg",
+        "/assets/about/contact-3.jpg",
+      ],
+      reverse: true,
+      isContact: true, // 👈 important flag
+    },
+  ];
+
   return (
-    <section id="about" className="bg-white py-24 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="px-4 md:px-20 py-16 bg-gray-50">
+      <h1
+        className="text-4xl md:text-5xl font-bold text-center text-blue-600 mb-16"
+        data-aos="fade-down"
+      >
+        About Me
+      </h1>
 
-        <AboutPanel title="About Me" image={profile}>
-          <p>
-            I am <strong>Firaol Bekuma</strong>, an Electronics & Communication Engineer
-            with a strong passion for IoT, embedded systems, and modern web technologies.
-          </p>
-          <p>
-            I enjoy building real-world solutions that connect hardware and software
-            to solve practical problems.
-          </p>
-        </AboutPanel>
-
-        <AboutPanel title="Education" image={education} reverse>
-          <p>
-            <strong>BSc in Electronics & Communication Engineering</strong>
-          </p>
-          <p>
-            Addis Ababa / Ambo University
-          </p>
-          <p>
-            Additional studies in <strong>Business & Management (BUMA)</strong>
-          </p>
-        </AboutPanel>
-
-        <AboutPanel title="Certifications & Training" image={certifications}>
-          <ul className="list-disc pl-6">
-            <li>Data Analysis Fundamentals</li>
-            <li>Fundamentals of Programming</li>
-            <li>Cisco Networking</li>
-            <li>IoT & Embedded Systems</li>
-          </ul>
-        </AboutPanel>
-
-        <AboutPanel title="Skills" image={skills} reverse>
-          <ul className="list-disc pl-6">
-            <li>HTML, CSS, JavaScript, React</li>
-            <li>ESP32, Arduino, Embedded C</li>
-            <li>Networking & System Support</li>
-            <li>Git, Linux, Cloud Basics</li>
-          </ul>
-        </AboutPanel>
-
+      {panels.map((panel, index) => (
         <AboutPanel
-          title="Projects"
-          image={projects}
-          buttonText="View Projects"
-          buttonLink="#projects"
-        >
-          <p>
-            I have worked on academic and personal projects involving IoT systems,
-            smart automation, and responsive web applications.
-          </p>
-        </AboutPanel>
-
-        <AboutPanel title="Languages" image={languages} reverse>
-          <ul className="list-disc pl-6">
-            <li>Afaan Oromo — Native</li>
-            <li>English — Professional</li>
-            <li>Amharic — Fluent</li>
-          </ul>
-        </AboutPanel>
-
-        <AboutPanel title="Internship & Experience" image={internship}>
-          <ul className="list-disc pl-6">
-            <li>ICT Directorate — Ambo University</li>
-            <li>EthioTelecom</li>
-          </ul>
-        </AboutPanel>
-
-        <AboutPanel
-          title="Let’s Connect"
-          image={contact}
-          reverse
-          buttonText="Email Me"
-          buttonLink="#contact"
-        >
-          <p>
-            Interested in collaboration, opportunities, or just a conversation?
-            Feel free to reach out.
-          </p>
-        </AboutPanel>
-
-      </div>
+          key={index}
+          title={panel.title}
+          text={panel.text}
+          images={panel.images}
+          reverse={panel.reverse}
+          isContact={panel.isContact}
+        />
+      ))}
     </section>
-  )
+  );
 }
